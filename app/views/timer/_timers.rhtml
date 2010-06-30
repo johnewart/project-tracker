@@ -1,0 +1,21 @@
+<table class="timers">
+	<tr>
+		<th>Task</th>
+		<th class="right">Time</th>
+		<th class="right">Start time</th>
+		<th class="right">Cost</th>
+	</tr>
+<% timers.each do |timer|%>
+	<tr class="timer">
+		<td><%= link_to_remote( image_tag("/images/spinner.gif"),
+						:complete => 'alert(request.responseText)',
+						:url => { 	:controller => 'timer', 
+									:action => 'stop', 
+									:id => timer.id } 
+						)%>&nbsp;<%= timer.task.name %></td>
+		<td align="right"><%= timer.task.qty %></td>
+		<td align="right"><%= timer.start_time.strftime("%m/%d/%y %I:%M %p") %></td>
+		<td align="right">$<%= sprintf("%.2f", timer.task.total) %></td>
+	</tr>
+<% end %>
+</table>

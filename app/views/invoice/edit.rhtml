@@ -1,0 +1,19 @@
+<%= render :partial => "invoice_editor" %>
+
+
+<% form_tag :action => 'update', :id => @invoice do %>
+<h2>State</h2>
+<%= collection_select 'invoice', 'state', ['U', 'P'], 'to_s', 'to_s' %>
+
+<h2>Due Date</h2>
+<%= date_select 'invoice', 'due' %>
+
+<h2>Sent Date</h2>
+<%= date_select 'invoice', 'sent' %>
+
+<h2>Comments</h2>
+<%= text_area 'invoice', 'comments', :rows => '15', :cols => '80' %>
+  <div class="linkbar">
+	<%= submit_tag "Update Invoice" %> 
+  </div>
+<% end %>

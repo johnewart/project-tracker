@@ -1,0 +1,15 @@
+<h1>Projects</h1>
+<% @customers.each do |c| %>
+	<div class="company">
+	<h3><%= c.company %></h3>
+	<ul>
+	<% c.projects.each do |p| %>
+		<li><%= link_to p.name, :controller => 'project', :action => 'show', :id => p.id %></li>
+	<% end %>
+	</ul>
+	</div>
+<% end %>
+<div class="spacer"></div>
+<div class="linkbar">
+<%= link_to "New Project", :controller => 'project', :action => 'new' %>
+</div>

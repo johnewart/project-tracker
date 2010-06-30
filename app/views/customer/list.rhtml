@@ -1,0 +1,14 @@
+<h1>Customers</h1>
+<%= link_to "Create new", :action => 'new' %>
+<% @customers.each do |customer| %>
+	<div class="company">
+	<h3><%= link_to customer.company, :action => 'show', :id => customer %></h3>
+	<div class="companyinfo">
+		<%= customer.contact_name %><br/>
+		<%= customer.address %><br/>
+		<%= customer.city %>, <%= customer.state %> <%= customer.zipcode %><br/>
+		<%= customer.telephone %><br/>
+	</div>
+	</div>
+<% end %>
+<div class="spacer"></div>

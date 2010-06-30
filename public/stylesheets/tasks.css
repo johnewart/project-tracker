@@ -1,0 +1,36 @@
+table.tasks { 
+	width: 750px;
+	border-collapse: collapse;
+	margin-bottom: 10px;
+
+}
+
+	table.tasks th { 
+		background-color: #a9bcc8;
+		font-size: .9em;
+		text-align: left;
+		padding: 3px;
+	}
+	
+	table.tasks th.right { 
+		text-align: right;
+	}
+	
+	table.tasks td { 
+		padding: 4px; 
+		font-size: .8em;
+	}
+	
+	table.tasks tr.task td { 
+			border-bottom: 1px solid #aaa;
+	}
+	
+	table.tasks td.right { 
+		text-align: right;
+	}
+	
+	table.tasks tr.total { 
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+	

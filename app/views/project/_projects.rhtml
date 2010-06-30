@@ -1,0 +1,25 @@
+<table class="projects">
+	<tr>
+		<th style="width: 50px;">Status</th>
+		<th style="width: 110px;">Due</th>
+		<th style="width: 30px;">ID</th>
+		<th style="width: 430px;">Project</th>
+		<th style="width: 80px;" class="right">Balance</th>
+	</tr>
+<%  totalbalance = 0
+	projects.each do |p| 
+	totalbalance += p.balance %> 
+	
+	<tr class="project">
+		<td><%= p.state %></td>	
+		<td><%= p.due_date.strftime("%B %d, %Y") %></td>
+		<td><%= p.id %></td>
+		<td><%= p.name %></td>
+		<td class="right"><%= sprintf("$%.2f", p.balance) %></td>
+	</tr>
+<% end %>
+	<tr class="total">
+		<td class="right" colspan="4">Balance</td>
+		<td class="right">$<%= sprintf("%.2f", totalbalance) %></td>
+	</tr>
+</table>

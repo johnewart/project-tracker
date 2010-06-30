@@ -1,0 +1,43 @@
+<table class="tasks">
+	<tr>
+		<th style="width: 350px;">Task</th>
+		<th style="width: 80px;">Due</th>
+		<th style="width: 80px;" class="right">Time</th>
+		<th style="width: 80px;" class="right">Rate</th>
+		<th style="width: 80px;" class="right">Subtotal</th>
+		<th style="width: 80px;" class="right">Action</th>
+	</tr>
+<%	billable = 0
+	tasks.each do |t| 
+	billable += t.subtotal 
+	%>
+	
+	<tr class="task">
+		<td><%= link_to t.name, :controller => "task", :action => "edit", :id => t.id %></td>	
+		<td><%= t.when_due %>
+		 <% if t.past_due? %>
+		 	<%= image_tag ("/images/face-sad.png") %>
+		 <% else %>
+		 	<%= image_tag ("/images/face-smile.png") %>
+		 <% end %>
+		</td>
+		<td class="right"><%= t.qty %></td>
+		<td class="right"><%= sprintf("$%.2f", t.rate) %></td>
+		<td class="right"><%= sprintf("$%.2f", t.subtotal) %></td>
+		<td class="right">
+		<span class="actions">
+				<%= link_to_remote( "Start Timer", 
+									:complete => 'alert(request.responseText)',
+									:url => { 	:controller => 'task', 
+												:action => 'start', 
+												:id => t.id } 
+									)%>
+			</span>
+		</td>
+	</tr>
+<% end %>
+	<tr class="total">
+		<td class="right" colspan="4">Billable Amount (pre-tax and discount)</td>
+		<td class="right">$<%= sprintf("%.2f", billable) %></td>
+	</tr>
+</table>

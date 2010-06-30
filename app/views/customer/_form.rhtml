@@ -1,0 +1,33 @@
+
+<div class="inset" style="width: 300px;">
+<h2>Customer Information</h2>
+	<div class="textbox"><%= text_field 'customer', 'company' %></div>
+	<div class="description">Company name</div> 
+	
+	<div class="textbox"><%= text_field 'customer', 'contact_name' %></div>
+	<div class="description">Contact</div>
+	
+	<div class="textbox"><%= file_field 'customer', 'logo_upload' %></div>
+	<div class="description">Logo</div>
+	
+<h2>Mailing Address</h2>
+	<div class="textbox"><%= text_field 'customer', 'address' %></div>
+	<div class="description">Address</div>
+
+	<div class="textbox"><%= text_field 'customer', 'city' %></div>
+	<div class="description">City</div>
+
+	<div class="textbox"><%= text_field 'customer', 'state', :maxlength => '2', :size=> 2 %></div>
+	<div class="description">State</div>
+
+	<div class="textbox"><%= text_field 'customer', 'zipcode', :maxlength => 5, :size => 5 %></div>
+	<div class="description">Zipcode</div>
+
+
+<h2>Contact Information</h2>
+	<div class="textbox"><%= text_field 'customer', 'telephone' %></div>
+	<div class="description">Telephone</div>
+
+	<div class="textbox"><%= text_field 'customer', 'fax' %></div>
+	<div class="description">Fax</div>
+</div>

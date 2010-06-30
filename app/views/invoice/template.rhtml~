@@ -1,0 +1,68 @@
+<html>
+<head>
+	<title>Invoice</title>
+	<style>
+	body {
+		font-family: "Segoe UI";
+	}
+
+	table {
+		border: 1px solid #888;
+		width: 80%;
+		margin-left: auto; 
+		margin-right: auto;
+		border-collapse: collapse;
+	}
+
+	th {
+		background-color: green;
+		color: #fff;
+		border-bottom: 1px solid #888;
+	}
+	
+	td {
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+
+	.right {
+		text-align: right;
+	}
+
+	.odd { 
+		background-color: #eee;
+	}
+	</style>
+</head>
+<body>
+<h2>Invoice #<%= @invoice.id %> &mdash; $<%= sprintf("%.2f", @invoice.total) %> total, $<%= sprintf("%.2f", @invoice.balance) %> outstanding</h2>
+<div id="customer">
+<%= @invoice.project.customer.company %><p/>
+<%= @invoice.project.customer.address %><br/>
+
+</div>
+	<table>
+		<tr>		
+			<th>Item</th>
+			<th class="right">Kind</th>
+			<th class='right'>Quantity</th>
+			<th class='right'>Rate</th>
+			<th class='right'>Subtotal</th>
+			<th class='right'>Total</th>
+		</tr>
+		<% @invoice.tasks.each do |t| %>
+		<tr class="<%= cycle('odd', 'even')%>">
+			<td><%= t.name %></td>
+			<td class="right"><%= t.kind %></td>
+			<td class="right"><%= t.qty %></td>
+			<td class="right">$<%= sprintf("%.2f", t.rate) %></td>
+			<td class="right">$<%= sprintf("%.2f", t.subtotal) %></td>
+			<td class="right">$<%= sprintf("%.2f", t.total) %></td>
+		</tr>		
+		<% end %>
+		<tr>
+			<td colspan="5" class="right"><b>TOTAL</b></td>
+			<td class="right"><%= @invoice.total %></td>
+		</tr>
+	</table>
+</body>

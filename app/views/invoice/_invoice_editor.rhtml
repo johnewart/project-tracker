@@ -1,0 +1,33 @@
+<div id="invoice_editor">
+<%= render :partial => '/common/invoice', :object => @invoice %>
+
+<h2>Un-invoiced Tasks in "<%= @invoice.project.name %>"</h2>
+<%= render :partial => '/common/tasks', :object => @availabletasks %>
+
+<div id="wastebin">
+  <%= image_tag "/images/trash.png" %>  Drop items here to remove them from the invoice.
+</div>
+
+
+<div style="height:40px;padding-top:10px;">
+<p id="indicator" style="display:none;margin-top:0px;">
+  <%= image_tag "indicator.gif" %> Updating invoice...
+</p>
+</div>
+
+</div>
+
+
+<%= drop_receiving_element "invoice_#{@invoice.id}_div", 
+      :update => "invoice_editor", :url => { :action => "addtask" , :invoice => @invoice.id},
+      :accept => "task", :hoverclass => "invoice-active",
+      :loading => "Element.show('indicator')",
+      :complete => "Element.hide('indicator')" %>
+      
+<%= drop_receiving_element "wastebin", 
+      :update => "invoice_editor", :url => { :action => "removetask", :invoice => @invoice.id },
+      :accept => "invoicetasks", :hoverclass => "wastebin-active",
+      :before => "Element.hide(element)",
+      :loading => "Element.show('indicator')",
+      :complete => "Element.hide('indicator')" %>
+

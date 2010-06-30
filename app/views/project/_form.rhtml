@@ -1,0 +1,16 @@
+<div class="inset" style="width: 300px;">
+	<div class="textbox"><%= text_field 'project', 'name' %></div>
+	<div class="description">Project Name</div>
+	
+	<div class="textbox"><%= text_field 'project', 'code' %></div>
+	<div class="description">Project Code</div>
+	
+	<div class="textbox"><%= text_field 'project', 'purchase_order' %></div>
+	<div class="description">P.O. Number</div>
+	
+	<div class="textbox"><%= date_select('project', 'due_date') %></div>
+	<div class="description">Due Date</div>
+	
+	<div class="textbox"><%= collection_select 'project', 'customer_id', @customers, 'id', 'company' %></div>
+	<div class="description">Customer</div>
+</div>

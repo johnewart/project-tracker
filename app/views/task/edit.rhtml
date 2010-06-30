@@ -1,0 +1,24 @@
+<h2>Editing <%= @task.name %>...</h2>
+<% form_tag :action => 'update', :id => @task do %>
+	<%= render :partial => 'form' %>
+	
+	<ul>
+	<% @task.timers.each do |t| %>
+		<li><%= t.to_s %> &mdash; <%= link_to "Delete", :controller => "timer", :action => "delete", :id => t.id %></li>
+	<% end %>
+	</ul>
+	
+  	<div class="linkbar">
+	<%= submit_tag "Update Task" %> 
+  </div>
+<% end %>
+
+<h2>New Timer</h2>
+<% form_remote_tag :url => { :action => "add_timer", :id => @task.id }, :update => "timers", :position => :top do %>
+	Begin<br/>
+	<%= datetime_select('timer', 'start_time') %><br/>
+	End<br/>
+	<%= datetime_select('timer', 'stop_time') %><br/>
+	<%= submit_tag("Add Timer") %>
+	<span id='busy' style="display: none">Adding...</span> 
+<% end %> 

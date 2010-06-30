@@ -1,0 +1,4 @@
+tmp/*
+.DS*
+.log
+log/*

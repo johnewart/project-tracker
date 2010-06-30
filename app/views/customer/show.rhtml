@@ -1,0 +1,18 @@
+<h1><%= @customer.company %></h1>
+<div class="overview">
+<b>Outstanding Balance:</b> <%= sprintf("$%.2f", @customer.balance) %><br/>
+</div>
+
+
+
+<h2>Open Invoices</h2>
+<%= render :partial => "/invoice/invoices", :locals => { :invoices => @customer.openinvoices } %>
+
+<h2>Projects</h2>
+<%= render :partial => "/project/projects", :locals => { :projects => @customer.projects } %>
+
+
+<h2>Payments</h2>
+<%= render :partial => "payments", :locals => { :payments => @customer.payments, :customer => @customer } %>
+<%= render :partial => "payment", :locals => {:customer => @customer } %>
+

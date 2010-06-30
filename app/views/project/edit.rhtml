@@ -1,0 +1,7 @@
+<h2>Editing <%= @project.name %>...</h2>
+<% form_tag :action => 'update' do %>
+<%= render :partial => 'form' %>
+  <div class="linkbar">
+	<%= submit_tag "Update Project" %> 
+  </div>
+<% end %>

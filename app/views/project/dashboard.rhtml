@@ -1,0 +1,11 @@
+<h2>Current Projects</h2>
+<%= render :partial => '/project/projects', :object => @openprojects %>
+
+<h2>Open Tasks</h2>
+<%= render :partial => '/task/tasks', :locals => {:tasks => @opentasks } %>
+
+<h2>Active Timers</h2>
+<%= render :partial => '/timer/timers', :locals => {:timers => @activetimers } %>
+
+<h2>Open Invoices</h2>
+<%= render :partial => "/invoice/invoices", :locals => {:invoices => @openinvoices} %>

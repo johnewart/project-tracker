@@ -1,0 +1,13 @@
+<h1>Project Info</h1>
+<%= render :partial => '/common/project', :object => @project %>
+<h1>Invoices</h1>
+<div id="invoices">
+	<%= render :partial => '/common/invoice', :collection => @project.invoices %>
+</div>
+<div class="linkbar">
+	<%= link_to_remote "Create Invoice", 
+					   :update => 'invoices', 
+					   :position => 'bottom',
+					   :url => { :action => 'add_invoice', :project => @project.id } %>
+	<%= link_to "Remove Project", { :action => 'destroy', :id => @project }, :confirm => "Really destroy project '#{@project.name}'?"%>
+</div>

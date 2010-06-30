@@ -1,0 +1,7 @@
+<h1><%= @customer.company %></h1>
+<% form_tag :action => 'update', :id => @customer  do %>
+<%= render :partial => 'form' %>
+  <div class="linkbar">
+	<%= submit_tag "Update Customer" %> 
+  </div>
+<% end %>

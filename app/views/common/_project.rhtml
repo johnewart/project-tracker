@@ -1,0 +1,6 @@
+<h2>Tasks for "<%= project.name %>"</h2>
+
+<%= render :partial => '/common/tasks', :object => project.tasks %>
+<div class="linkbar">
+	<%= link_to 'New Task', :controller => 'task', :action => 'new', :project_id => project.id %>
+</div>

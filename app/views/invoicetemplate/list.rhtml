@@ -1,0 +1,18 @@
+<h2>Invoice Templates</h2>
+<table class="fancy grid">
+	<tr>
+		<th>Name</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+<% @invoicetemplates.each do |template| %>
+	<tr class="<%= cycle('odd', 'even')%>">
+		<td><%= template.name %></td>
+		<td><%= link_to "Edit", :action => 'edit', :id => template %></td>
+		<td><%= link_to "Delete", :action => 'delete', :id => template %></td>
+	</tr>
+<% end %>
+</table>
+<div class="linkbar">
+	<%= link_to "Create new", :action => 'new' %>
+</div>

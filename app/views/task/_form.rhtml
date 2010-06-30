@@ -1,0 +1,15 @@
+<div class="inset" style="width: 300px;">
+	
+	<div class="textbox"><%= collection_select 'task', 'task_category_id', @task_categories, 'id', 'name' %></div>
+	<div class="description">Type</div>
+	
+	<div class="textbox"><%= text_field 'task', 'name' %></div>
+	<div class="description">Name</div>
+	
+	<div class="textbox"><%= date_select('task', 'due_date') %></div>
+	<div class="description">Due Date</div>
+	
+	<div class="textbox"><%= text_field 'task', 'rate' %></div>
+	<div class="description">Rate</div>
+	
+</div>

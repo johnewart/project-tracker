@@ -1,0 +1,28 @@
+<h2><%= link_to "Invoice #" + an_invoice.id.to_s, :controller => 'invoice', :action => 'edit', :id => an_invoice.id %> - $<%= an_invoice.total %> total, $<%= an_invoice.balance %> outstanding</h2>
+<h4><a href="javascript:Effect.Fade('invoice_<%=an_invoice.id%>');">Hide</a> &mdash; <a href="javascript:Effect.Appear('invoice_<%=an_invoice.id%>');">Show</a> </h4>
+<div id="invoice_<%=an_invoice.id%>" class="invoice_tasks">
+	<h3>Tasks</h3>
+	<% an_invoice.tasks.each do |t| %>
+	<div>
+		<div class="<%= cycle('odd', 'even')%> handle">
+			<span class='kind'><%= t.kind? %></span>
+			<span class="name"><%= t.name %></span>
+			<span class="due_date"><%= t.due_date %></span>
+			<span class="quantity"><%= t.qty %></span>
+			<span class="rate">$ <%= sprintf("%.2f", t.rate) %></span>
+			<span class="subtotal">$ <%= sprintf("%.2f", t.subtotal) %></span>
+			<span class="discount"><%= t.discount %>%</span>
+			<span class="markup"><%= t.markup %>%</span>
+			<span class="taxes"><%= t.taxes %></span>
+			<span class="total">$ <%= sprintf("%.2f", t.total) %></span>
+			<div class="spacer"></div>
+		</div>
+	</div>
+	<% end %>
+	<h3>Payments</h3>
+	<% an_invoice.payments.each do |p| %>
+	<div>
+		$ <%= p.amount %> on <%= p.received %>
+	</div>
+	<% end %>
+</div>

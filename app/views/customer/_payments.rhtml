@@ -1,0 +1,27 @@
+<table class="payments">
+	<tr>
+		<th style="width: 110px;">Date Received</th>
+		<th style="width: 110px;">Amount</th>
+		<th style="width: 110px;" class="right">Balance</th>
+	</tr>
+	
+<% balance = customer.total	
+   payments.each do |p|
+   balance -= p.amount  %> 
+   
+	<tr class="invoice">
+		<td><%= p.received.strftime("%B %d, %Y") %></td>	
+		<td><%= sprintf("$%.2f", p.amount) %></td>
+		<td class="right"><%= sprintf("$%.2f", balance) %></td>
+	</tr>
+<% end %>
+	<div id="newpayment">
+	</div>
+</table>
+
+<div id="payment_info">
+<% form_tag :action => "addpayment", :id => customer.id do %>
+	Payment Amount: <%= text_field 'payment', 'amount' %> <%= submit_tag "Add payment" %>
+<% end %>
+</div>
+

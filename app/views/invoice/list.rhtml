@@ -1,0 +1,5 @@
+<h1>Open Invoices</h1>
+<%= render :partial => "invoices", :locals => {:invoices => @openinvoices} %>
+
+<h1>Paid Invoices</h1>
+<%= render :partial => "invoices", :locals => {:invoices => @paidinvoices} %>

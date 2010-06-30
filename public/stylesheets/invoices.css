@@ -1,0 +1,39 @@
+table.invoices { 
+	width: 750px;
+	border-collapse: collapse;
+	margin-bottom: 10px;
+}
+
+	table.invoices th { 
+		background-color: #a9bcc8;
+		font-size: .9em;
+		text-align: left;
+		padding: 3px;
+	}
+	
+	table.invoices th.right { 
+		text-align: right;
+	}
+	
+	table.invoices td { 
+		padding: 4px; 
+		font-size: .8em;
+	}
+	
+	table.invoices tr.normal { 
+		border-bottom: 1px solid #aaa;
+	}
+	table.invoices tr.highlight { 
+		background-color: #fff5ae;
+		border-bottom: 1px solid #aaa;
+	}
+	
+	table.invoices td.right { 
+		text-align: right;
+	}
+	
+	table.invoices tr.total { 
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+	

@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>project|tracker</title>
+    <%= stylesheet_link_tag 'styles.css' %>
+   	<%= javascript_include_tag "prototype", "effects", "dragdrop" %>
+</head>
+<body>
+	<div id="container">
+	<div id="header">project tracker</div>
+	<div id="bar">
+		
+		<span class="menuheading"><a href="/project/dashboard">Dashboard</a></span>
+		<span class="menuheading"><a href="/project/list">Projects</a></span>
+		<span class="menuheading"><a href="/customer/list">Customers</a></span>
+		<span class="menuheading"><a href="/invoice/list">Invoices</a></span>
+		<span class="menuheading"><a href="/project/new">New Project</a></span>
+		<span class="menuheading"><a href="/invoicetemplate/">Invoice Templates</a></span>
+		
+	</div>
+	<div class="minibar" id="messages">
+		<% if session[:user] %>
+			Welcome, <%= link_to  session[:user].fullname, :controller => 'account', :action => 'edit' %> 
+			<% if session[:project] %>
+				you're currently viewing <b><a href="/project/show/<%=session[:project].id%>"><%= session[:project].name %></a></b>
+			<% end %>
+			<% if session[:user].projects.length > 0 %>
+				<select name="currentproject">
+				<%= options_from_collection_for_select(session[:user].projects, :id, :name) %>
+				</select>		
+			<% end %>
+		<% end %>
+		
+	</div>
+	<% if session[:user] and session[:user].admin? %>
+	<div class="adminbar">
+			<span class="menuheading">Administration &raquo;</span>
+			<span class="menuheading"><a href="/project/list">Projects</a></span>
+			<span class="menuheading"><a href="/user/list">Users</a></span>
+	</div>
+	<% end %>
+	<div id="content">
+	    <%= @content_for_layout %>
+    </div>
+	<div class="spacer"></div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<div id="tasklist" class="tasks">	
+	<div class="header">
+		<span class="actions">&nbsp;</span>
+		<span class='name' style="text-align: left">Item</span>
+		<span class='kind'>Kind</span>
+		<span class='due_date'>Due</span>
+		<span class='quantity'>Quantity</span>
+		<span class='rate'>Rate</span>
+		<span class='subtotal'>Subtotal</span>
+		<span class='discount'>Discount</span>
+		<span class='markup'>Markup</span>
+		<span class='taxes'>Taxes</span>
+		<span class='total'>Total</span>
+		<div class="spacer"></div>
+	</div>
+	<ul class="sortablelist" id="tasklist">
+	<% tasks.each do |t| %>
+		<li>
+		<div id="task_<%=t.id%>" class="<%= cycle('odd', 'even')%> task">
+			<%= draggable_element "task_#{t.id}", :revert => true %>
+			<span class="actions">
+				<%= link_to_remote( image_tag('/images/timer-new-small.png'), 
+									:complete => 'alert(request.responseText)',
+									:url => { 	:controller => 'task', 
+												:action => 'start', 
+												:id => t.id } 
+									)%>
+			</span>
+			<span class="name"><%= link_to t.name, :controller => 'task', :action => "edit", :id => t.id %></span>
+			<span class='kind'><%= t.kind %></span>
+			<span class="due_date"><%= t.due_date %></span>
+			<span class="quantity"><%= t.qty %></span>
+			<span class="rate">$<%= sprintf("%.2f", t.rate) %></span>
+			<span class="subtotal">$<%= sprintf("%.2f", t.subtotal) %></span>
+			<span class="discount"><%= t.discount %>%</span>
+			<span class="markup"><%= t.markup %>%</span>
+			<span class="taxes"><%= t.taxes %></span>
+			<span class="total">$<%= sprintf("%.2f", t.total) %></span>
+			<div class="spacer"></div>
+		</div>
+		<div class="spacer"></div>
+		</li>
+	<% end %>
+	</ul>
+</div>

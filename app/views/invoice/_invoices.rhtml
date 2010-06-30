@@ -1,0 +1,26 @@
+<table class="invoices">
+	<tr>
+		<th style="width: 50px;">Status</th>
+		<th style="width: 110px;">Due</th>
+		<th style="width: 110px;">Sent</th>
+		<th style="width: 30px;">ID</th>
+		<th style="width: 320px;">Client</th>
+		<th style="width: 100px;" class="right">Balance</th>
+	</tr>
+<%  totalbalance = 0
+	invoices.each do |i| 
+	totalbalance += i.total	%>
+	<tr class="normal" onclick="location.href='/invoice/edit/<%= i.id %>';" onmouseout="this.className='normal'" onmouseover="this.className='highlight'" >
+		<td><%= i.state %></td>	
+		<td><%= i.due.strftime("%B %d, %Y") %></td>
+		<td><%= i.sent.strftime("%B %d, %Y") %></td>
+		<td><%= i.id %></td>
+		<td><%= i.project.customer.company %></td>
+		<td class="right">$<%= sprintf("%.2f", i.balance) %></td>
+	</tr>
+<% end %>
+	<tr class="total">
+		<td class="right" colspan="5">Total Due</td>
+		<td class="right">$<%= sprintf("%.2f", totalbalance) %></td>
+	</tr>
+</table>

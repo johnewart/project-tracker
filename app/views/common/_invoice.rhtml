@@ -1,0 +1,56 @@
+<!-- <h4><a href="javascript:Effect.Fade('invoice_<%=invoice.id%>_div');">Hide</a> &mdash; <a href="javascript:Effect.Appear('invoice_<%=invoice.id%>_div');">Show</a> </h4> -->
+		<%= drop_receiving_element("invoice_#{invoice.id}",                             # The id of the receiving element
+		  :accept => "task",                                         # The CSS class of the dropped element
+		  :with   => "'task_id=' + (element.id.split('_').last())",     # The query string parameters
+		  :url    => {:controller => :invoice, :action=>:addtask, :id => invoice.id}                          # The action to call
+		)%>		
+	
+<div id="invoice_<%=invoice.id%>_div" class="invoice_tasks">
+	<div class="h2">Invoice #<%= invoice.id %> &mdash; $<%= sprintf("%.2f", invoice.total) %> total, $<%= sprintf("%.2f", invoice.balance) %> outstanding
+		<div align="right" style="float:right;">
+		<%= link_to( image_tag("/images/edit-small.png"), :controller => 'invoice', :action => 'edit', :id => invoice.id) %>
+		<%= link_to( image_tag("/images/print-small.png"), :controller => 'invoice', :action => 'print', :id => invoice.id) %>
+		<%= link_to( image_tag("/images/delete-small.png"), { :controller => 'invoice', :action => 'destroy', :id => invoice.id }, :confirm => "Really destroy invoice ##{invoice.id}?") %>
+		</div>
+	</div>
+	<div class="tasks">
+		<div class="header">
+			<span class='actions'>&nbsp;</span>
+			<span class='name' style="text-align: left">Item</span>
+			<span class='kind'>Kind</span>
+			<span class='due_date'>Due</span>
+			<span class='quantity'>Quantity</span>
+			<span class='rate'>Rate</span>
+			<span class='subtotal'>Subtotal</span>
+			<span class='discount'>Discount</span>
+			<span class='markup'>Markup</span>
+			<span class='taxes'>Taxes</span>
+			<span class='total'>Total</span>
+			<div class="spacer"></div>
+		</div>
+		<ul>
+		<div id="invoice_<%=invoice.id%>">
+			&nbsp;
+
+		<% invoice.tasks.each do |t| %>
+		<div class="<%= cycle('odd', 'even')%> invoicetasks" id="invoicetask_<%= t.id %>">
+			<%= draggable_element "invoicetask_#{t.id}", :revert => true %>
+			<span class='actions'>&nbsp;</span>
+			<span class="name"><%= t.name %></span>
+			<span class='kind'><%= t.kind %></span>
+			<span class="due_date"><%= t.due_date %></span>
+			<span class="quantity"><%= t.qty %></span>
+			<span class="rate">$<%= sprintf("%.2f", t.rate) %></span>
+			<span class="subtotal">$<%= sprintf("%.2f", t.subtotal) %></span>
+			<span class="discount"><%= t.discount %>%</span>
+			<span class="markup"><%= t.markup %>%</span>
+			<span class="taxes"><%= sprintf("%.2f", t.taxes) %></span>
+			<span class="total">$<%= sprintf("%.2f", t.total) %></span>
+			<div class="spacer"></div>
+		</div>		
+		<% end %>
+	</div>
+		</ul>
+	</div>
+
+</div>

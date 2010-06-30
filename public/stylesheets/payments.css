@@ -1,0 +1,36 @@
+table.payments { 
+	width: 750px;
+	border-collapse: collapse;
+	margin-bottom: 10px;
+
+}
+
+	table.payments th { 
+		background-color: #a9bcc8;
+		font-size: .9em;
+		text-align: left;
+		padding: 3px;
+	}
+	
+	table.payments th.right { 
+		text-align: right;
+	}
+	
+	table.payments td { 
+		padding: 4px; 
+		font-size: .8em;
+	}
+	
+	table.payments tr.payment td { 
+			border-bottom: 1px solid #aaa;
+	}
+	
+	table.payments td.right { 
+		text-align: right;
+	}
+	
+	table.payments tr.total { 
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+	

@@ -1,0 +1,36 @@
+table.projects { 
+	width: 750px;
+	border-collapse: collapse;
+	margin-bottom: 10px;
+
+}
+
+	table.projects th { 
+		background-color: #a9bcc8;
+		font-size: .9em;
+		text-align: left;
+		padding: 3px;
+	}
+	
+	table.projects th.right { 
+		text-align: right;
+	}
+	
+	table.projects td { 
+		padding: 4px; 
+		font-size: .8em;
+	}
+	
+	table.projects tr.project td { 
+			border-bottom: 1px solid #aaa;
+	}
+	
+	table.projects td.right { 
+		text-align: right;
+	}
+	
+	table.projects tr.total { 
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+	

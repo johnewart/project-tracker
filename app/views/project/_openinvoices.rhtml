@@ -1,0 +1,35 @@
+<table class="fancy">
+	<tr>
+		<th style="text-align: left;" width="50%">Project</th>
+		<th>Customer</th>
+		<th>Date Sent</th>
+		<th style="text-align: right;">Total Amount</th>
+		<th style="text-align: right;">Balance</th>			
+	</tr>
+<% 
+  totalin = 0
+  totalbal = 0
+  @unpaidinvoices.each do |i| 
+	totalin += i.total
+	totalbal += i.balance
+	%>
+	<tr class="<%= cycle('odd', 'even')%>">
+		<td><%= link_to i.project.name, :controller => 'invoice', :action => 'edit', :id => i.id %></td>
+		<td><%= link_to i.project.customer.company, :controller => 'customer', :action => 'view', :id => i.project.customer.id %></td>
+		<td align="center">
+			<% if i.sent %>
+			<%= i.sent.strftime("%B %d, %Y") %>
+			<% else %>
+			Not sent
+			<% end %>
+		</td>
+		<td align="right">$<%= sprintf("%.2f", i.total) %></td>
+		<td align="right">$<%= sprintf("%.2f", i.balance) %></td>
+	</tr>
+<% end %>
+<tr class="totals">
+	<td colspan="3">Totals</td>
+	<td align="right">$<%= sprintf("%.2f", totalin) %></td>
+	<td align="right">$<%= sprintf("%.2f", totalbal) %></td>
+</tr>
+</table>
